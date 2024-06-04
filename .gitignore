@@ -1,0 +1,5 @@
+*.pyc
+__pycache__/
+src/
+RegLog.db
+.env
