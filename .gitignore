@@ -3,3 +3,4 @@ __pycache__/
 src/
 RegLog.db
 .env
+sample.py

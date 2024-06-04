@@ -8,10 +8,7 @@ window.rowconfigure(0, weight=1)
 window.columnconfigure(0, weight=1)
 window.state('zoomed')
 window.resizable(0, 0)
-window.geometry("400x400")
-window.minsize(750, 650) 
-window.maxsize(750, 650)
-window.title('Monja Uploader')
+window.title('Login and Registration Page')
 
 # Window Icon Photo
 icon = PhotoImage(file='images\\pic-icon.png')
@@ -135,7 +132,7 @@ side_image = Image.open('images\\vector.png')
 photo = ImageTk.PhotoImage(side_image)
 side_image_label = Label(design_frame3, image=photo, bg='#1e85d0')
 side_image_label.image = photo
-side_image_label.place(x=10, y=10)
+side_image_label.place(x=50, y=10)
 
 
 # ============ LOGIN DATABASE CONNECTION =========
