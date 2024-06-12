@@ -1,36 +1,38 @@
-from tkinter import *
-from tkinter import messagebox
+import tkinter as tk
+from tkinter import messagebox, PhotoImage
 from PIL import ImageTk, Image
-from src.form import login, register
 
-class MainApp(Tk):
-    def __init__(self, *args, **kwargs):
-        Tk.__init__(self, *args, **kwargs)
-        self.title("Monja Uploader")
-        self.state('zoomed')
-        self.resizable(0, 0)
-        self.geometry("400x400")
-        self.minsize(750, 650)
-        self.maxsize(750, 650)
-        self.iconphoto(True, PhotoImage(file='images/pic-icon.png'))
-        
-        self.container = Frame(self)
-        self.container.grid(row=0, column=0, sticky="nsew")
-        self.container.grid_rowconfigure(0, weight=1)
-        self.container.grid_columnconfigure(0, weight=1)
+# Importing functions from your src.form module
+from src import login, register
 
-        self.frames = {}
-        for F in (login.LoginPage, register.RegisterPage):
-            frame = F(self.container, self)
-            self.frames[F] = frame
-            frame.grid(row=0, column=0, sticky="nsew")
+# Initialize the main window
+window = tk.Tk()
+window.title("Monja Uploader")
+window.geometry('660x680')
+window.configure(bg='#83B4FF')
+frame = tk.Frame(window, bg='#83B4FF')
+icon = PhotoImage(file='images\\pic-icon.png')
+window.iconphoto(True, icon)
 
-        self.show_frame(login.LoginPage)
+def navigasi():
+    nav = tk.Label(frame, text='Monja Uploader', bg='#FDFFE2', fg='#83B4FF', font=('Poppins', 28, 'bold'))
+    nav.pack(pady=130)  
 
-    def show_frame(self, cont):
-        frame = self.frames[cont]
-        frame.tkraise()
+def btn_navigasi():
+    # Create Login button
+    btn_login = tk.Button(frame, text='Login', bg='#005C78',  fg="#FFFFFF", font=("Poppins", 16), command=login.show_login_form)
+    btn_login.config(borderwidth=0, border=0, width=20, pady=5, relief=tk.RIDGE)  # Set same size and round corners
+    btn_login.pack(pady=20, padx=100) # Add top padding
 
-if __name__ == "__main__":
-    app = MainApp()
-    app.mainloop()
+    # Create Register button
+    register_button = tk.Button(frame, text="Register", bg="#005C78", fg="#FFFFFF", font=("Poppins", 16), command=register)
+    register_button.config(borderwidth=0, border=0, width=20, pady=5, relief=tk.RIDGE)  # Set same size and round corners
+    register_button.pack(pady=10, padx=20)  # Add some padding between the buttons
+
+# Call the navigasi function to add the label to the frame
+navigasi()
+
+btn_navigasi()  # Call the button function to add buttons
+
+frame.pack(padx=30, pady=30)
+window.mainloop()
